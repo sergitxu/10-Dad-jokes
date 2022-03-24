@@ -5,14 +5,32 @@ jokeBtn.addEventListener('click', generateJoke);
 
 generateJoke();
 
-function generateJoke() {
+// Using async await
+
+async function generateJoke() {
     const config = {
         headers: {
             Accept: 'application/json'
         }
     }
 
-    fetch('http://icanhazdadjoke.com', config)
-        .then(res => res.json())
-        .then(data => jokeEl.innerHTML = data.joke)
+    const res = await fetch('http://icanhazdadjoke.com', config);
+    const data = await res.json();
+
+    jokeEl.innerHTML = data.joke;
+
 }
+
+// Using .then()
+//
+//  function generateJoke() {
+//     const config = {
+//         headers: {
+//             Accept: 'application/json'
+//         }
+//     }
+
+//     fetch('http://icanhazdadjoke.com', config)
+//         .then(res => res.json())
+//         .then(data => jokeEl.innerHTML = data.joke)
+// }
